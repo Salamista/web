@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pick-up analog front-end — Jakub [Priezvisko]</title>
+  <meta name="description" content="Root-causing early relay failures in an accelerator pick-up front-end and redesigning the board.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="topbar__home" href="../index.html"><span class="dot" aria-hidden="true"></span>jakub [priezvisko]</a>
+  <a href="../index.html#projects">← all projects</a>
+</header>
+
+<main id="main" class="article">
+  <p class="article__kicker">project 01 · RF · test bench · CERN</p>
+  <h1>Pick-up analog front‑end</h1>
+  <p class="article__lead">Finding out why RF relays in the analog front-end of SPS beam pick-ups failed after only tens of thousands of cycles — and redesigning the board so they stop.</p>
+  <dl class="meta">
+    <div><dt>Role</dt><dd>[Your role]</dd></div>
+    <div><dt>When</dt><dd>[20XX — now]</dd></div>
+    <div><dt>Tools</dt><dd>R&amp;S ZNBT-8 VNA · Python / SCPI · Arduino · KiCad</dd></div>
+    <div><dt>Status</dt><dd>Investigation done · redesign in progress</dd></div>
+  </dl>
+
+  <section>
+    <h2>Context</h2>
+    <p>The PUAFE boards condition signals from SPS beam pick-ups before they reach beam control. Each board switches amplifier and attenuator stages with RF relays so one chain covers everything from a pilot bunch to full intensity.</p>
+    <p>In operation, failures clustered around 20 – 40 k cycles, with a large unit-to-unit spread.</p>
+  </section>
+
+  <section>
+    <h2>Approach</h2>
+    <ul class="bullets">
+      <li>Built an automated endurance rig: Arduino-driven relay cycling, a 24-port VNA under Python / SCPI control and a Touchstone archive of every sweep.</li>
+      <li>Ran four test campaigns: fast cycling, DC bias, RF power and an SPS-mimicking cycle (14.5 s on / off for 48 days).</li>
+      <li>Correlated eight months of operational switch counts with field failures.</li>
+      <li>Cross-checked failed relays with micro-tomography.</li>
+    </ul>
+    <figure class="figure">
+      <!-- Replace with: <img src="../assets/img/....webp" alt="..." width="1600" height="900" loading="lazy"> -->
+      <div class="placeholder">[Photo — relay endurance rig]</div>
+      <figcaption>Fig. 1 — Endurance rig: relay boards, cycling interface and the 24-port VNA.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="results">
+      <div><b>τ ≈ 73 s</b><span>coil thermal time constant</span></div>
+      <div><b>14.4 s</b><span>mean SPS switching interval</span></div>
+      <div><b>48 days</b><span>SPS-mimicking test, field failures reproduced</span></div>
+      <div><b>21 M</b><span>cycles survived at 20 ms fast cycling</span></div>
+    </div>
+    <p>Root cause: fatigue from deep thermal cycles of the monostable relay coil. The SPS switches stages far more often than the coil's thermal time constant, so it never reaches equilibrium. At 20 ms on / off the coil temperature hardly swings, which is why fast cycling lasted millions of cycles.</p>
+    <figure class="figure">
+      <!-- Replace with: <img src="../assets/img/....webp" alt="..." width="1600" height="900" loading="lazy"> -->
+      <div class="placeholder">[Plot — ΔS21 vs. cycle count]</div>
+      <figcaption>Fig. 2 — S21 degradation trend versus switching cycles.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Redesign</h2>
+    <p>A new front-end for 100 kHz – 3 GHz with a six-stage amplifier / attenuator bypass topology. Candidates under evaluation: bistable relays, SOI and MEMS switches, across four architectures from a direct replacement to a collapsed SP6T chain.</p>
+  </section>
+
+  <section>
+    <h2>What I'd do differently</h2>
+    <p>[One honest paragraph — reviewers love this section.]</p>
+  </section>
+
+  <a class="next" href="pin-diode-switch.html">
+    <span>next project →</span>
+    <b>PIN-diode RF switch</b>
+  </a>
+</main>
+</body>
+</html>

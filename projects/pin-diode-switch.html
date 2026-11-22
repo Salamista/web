@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIN-diode RF switch — Jakub [Priezvisko]</title>
+  <meta name="description" content="High-power RF switch for 10 MHz – 2.5 GHz in PIN-diode DPDT, TEE and discrete-transistor variants.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="topbar__home" href="../index.html"><span class="dot" aria-hidden="true"></span>jakub [priezvisko]</a>
+  <a href="../index.html#projects">← all projects</a>
+</header>
+
+<main id="main" class="article">
+  <p class="article__kicker">project 02 · RF · switching · KiCad</p>
+  <h1>PIN-diode RF switch</h1>
+  <p class="article__lead">A high-power RF switch for 10 MHz – 2.5 GHz, explored in three topologies: a PIN-diode DPDT, a TEE variant and a discrete-transistor SPDT.</p>
+  <dl class="meta">
+    <div><dt>Band</dt><dd>10 MHz – 2.5 GHz</dd></div>
+    <div><dt>Power</dt><dd>up to 50 W peak</dd></div>
+    <div><dt>Isolation target</dt><dd>≥ 50 dB</dd></div>
+    <div><dt>Tools</dt><dd>KiCad · [simulator]</dd></div>
+  </dl>
+
+  <section>
+    <h2>Requirements</h2>
+    <ul class="bullets">
+      <li>Isolation ≥ 50 dB across the band with minimum insertion loss.</li>
+      <li>Cold switching — RF is off during transitions; only one input is ever live.</li>
+      <li>Two inputs, two outputs (DPDT).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Three topologies</h2>
+    <ul class="bullets">
+      <li><b>Series-shunt PIN DPDT</b> — MPN7453B in the series position; shunt diodes chosen for C<sub>t</sub> ≤ 0.3 pF, R<sub>s</sub> ≤ 0.3 Ω, V<sub>br</sub> ≥ 250 V.</li>
+      <li><b>TEE variant</b> — MA4P505 PIN diodes biased by a DRV8844A driver (0 / 48 V), 10 W target.</li>
+      <li><b>Discrete-transistor SPDT</b> — 20 W CW, &gt; 45 dB isolation, rails within ±50 V, transistors around €5 each.</li>
+    </ul>
+    <figure class="figure">
+      <!-- Replace with: <img src="../assets/img/....webp" alt="..." width="1600" height="900" loading="lazy"> -->
+      <div class="placeholder">[Schematic / layout — DPDT]</div>
+      <figcaption>Fig. 1 — Series-shunt PIN-diode DPDT.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="results">
+      <div><b>[XX dB]</b><span>isolation @ 2.5 GHz</span></div>
+      <div><b>[X.X dB]</b><span>insertion loss</span></div>
+      <div><b>[XX W]</b><span>tested power</span></div>
+    </div>
+    <figure class="figure">
+      <!-- Replace with: <img src="../assets/img/....webp" alt="..." width="1600" height="900" loading="lazy"> -->
+      <div class="placeholder">[Plot — isolation and S21 vs. frequency]</div>
+      <figcaption>Fig. 2 — Measured isolation and insertion loss.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>What I'd do differently</h2>
+    <p>[…]</p>
+  </section>
+
+  <a class="next" href="low-noise-reference.html">
+    <span>next project →</span>
+    <b>Low-noise reference filter</b>
+  </a>
+</main>
+</body>
+</html>

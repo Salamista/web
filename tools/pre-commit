@@ -1,0 +1,16 @@
+#!/bin/sh
+# Blocks commits containing files over the limit (git history keeps them forever).
+# Install once:  cp tools/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+LIMIT_KB=500
+
+fail=0
+for f in $(git diff --cached --name-only --diff-filter=AM); do
+  [ -f "$f" ] || continue
+  case "$f" in *.pdf) continue ;; esac          # allow cv.pdf etc.
+  size_kb=$(( $(wc -c < "$f") / 1024 ))
+  if [ "$size_kb" -gt "$LIMIT_KB" ]; then
+    echo "✗ $f is ${size_kb} kB (limit ${LIMIT_KB} kB). Run: python tools/optimize_images.py \"$f\""
+    fail=1
+  fi
+done
+[ "$fail" -eq 0 ] || { echo "Commit aborted. Bypass once with: git commit --no-verify"; exit 1; }

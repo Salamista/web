@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Low-noise reference filter — Jakub [Priezvisko]</title>
+  <meta name="description" content="Hertz-range 4th-order low-pass for a 5 V reference, with an ADC/DAC loop trimming drift against an ADR1000.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="topbar__home" href="../index.html"><span class="dot" aria-hidden="true"></span>jakub [priezvisko]</a>
+  <a href="../index.html#projects">← all projects</a>
+</header>
+
+<main id="main" class="article">
+  <p class="article__kicker">project 03 · precision · low noise · mixed-signal</p>
+  <h1>Low-noise reference filter</h1>
+  <p class="article__lead">A 4th-order low-pass with a cutoff of a few hertz for a 5 V reference signal — plus a digital loop that trims its drift against an ADR1000.</p>
+  <dl class="meta">
+    <div><dt>Signal</dt><dd>5 V in · 10 V out</dd></div>
+    <div><dt>Filter</dt><dd>4th-order LP, ~Hz cutoff</dd></div>
+    <div><dt>Converters</dt><dd>LTC2357-18 ADC · DAC</dd></div>
+    <div><dt>Tools</dt><dd>KiCad</dd></div>
+  </dl>
+
+  <section>
+    <h2>Idea</h2>
+    <p>Heavy filtering removes noise but lets slow drift through. An 18-bit ADC compares the output with an ADR1000 reference, an Arduino Nano decides, and a DAC adds a very small, bidirectional correction at the filter input.</p>
+  </section>
+
+  <section>
+    <h2>Design choices</h2>
+    <ul class="bullets">
+      <li>C0G / film capacitors only in the filter path — size traded for dielectric absorption and stability.</li>
+      <li>Sense path kept minimal: output compared directly with the reference through ADA4523 amplifiers and LT5400 matched networks.</li>
+      <li>DAC correction applied as a DC lift centred on 5 V, so no pull-up from a noisy supply touches the reference node.</li>
+      <li>Separate reference board with four ADR1000s in parallel.</li>
+    </ul>
+    <figure class="figure">
+      <!-- Replace with: <img src="../assets/img/....webp" alt="..." width="1600" height="900" loading="lazy"> -->
+      <div class="placeholder">[Schematic — filter and feedback loop]</div>
+      <figcaption>Fig. 1 — Signal path and correction loop.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="results">
+      <div><b>[X µV]</b><span>peak-to-peak noise, 0.1–10 Hz</span></div>
+      <div><b>[X ppm]</b><span>drift over [time]</span></div>
+    </div>
+    <figure class="figure">
+      <!-- Replace with: <img src="../assets/img/....webp" alt="..." width="1600" height="900" loading="lazy"> -->
+      <div class="placeholder">[Plot — output drift with and without loop]</div>
+      <figcaption>Fig. 2 — Drift with the loop open and closed.</figcaption>
+    </figure>
+  </section>
+
+  <a class="next" href="rogowski-calibration.html">
+    <span>next project →</span>
+    <b>Ø1 m Rogowski coil calibration</b>
+  </a>
+</main>
+</body>
+</html>
